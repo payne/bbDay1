@@ -76,13 +76,16 @@
     addOne: function( todo ) {
       var view = new app.TodoView({ model: todo });
       $('#todo-list').append( view.render().el );
-      console.log('window.firebase=');
-      console.log(window.firebase);
       var uid=window.firebase.auth().currentUser.uid;
-      console.log('uid='+uid);
-      console.log('todo=');
       console.log(todo);
-      window.firebase.database().ref('matt/'+todo.id).set({'model': JSON.stringify(todo)});
+      console.log(typeof todo);
+      console.log(todo.get('cid'));
+      window.todo = todo;
+      var todoId = todo.get('databaseId');//TODO(MGP): Maybe switch to cid
+      var refStr = "matt4/"+todoId;
+      console.log(refStr);
+      window.firebase.database().ref(refStr).set({'model': JSON.stringify(todo)});
+      console.log("Done writting to matt4");
     },
 
     // Add all items in the **Todos** collection at once.
