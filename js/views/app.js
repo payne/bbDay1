@@ -40,7 +40,7 @@
       this.listenTo(app.Todos,'filter', this.filterAll);
       this.listenTo(app.Todos, 'all', this.render);
 
-      app.Todos.fetch();
+      app.Todos.fetch(); //TODO(MGP): Make this fetch from firebase
     },
 
     // New
